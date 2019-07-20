@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  db:
+     image: mysql
+     container_name: mysql_db
+     restart: always
+     environment:
+        - MYSQL_ROOT_PASSWORD= "root"
+  web:
+     image: apache
+     build: ./webapp  
+     depends_on:
+        - db
+     container_name: apache_web
+     restart: always
+     ports:
+       - 400:80
+#colon ke baad waala 80 is dockerfile waala to be used for local host
